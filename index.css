@@ -23,6 +23,14 @@ header {
    flex: 1 1 auto;
 }
 
+#theCalculator {
+   border: 1px solid orange;
+   width: 33vw;
+   min-width: 250px;
+   min-height: 350px;
+   max-height: 75%;
+}
+
 footer {
    min-height: 32px;
 }
