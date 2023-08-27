@@ -29,6 +29,22 @@ header {
    min-width: 250px;
    min-height: 350px;
    max-height: 75%;
+   padding: 16px;
+   flex-direction: column;
+   gap: 8px;
+   align-items: stretch;
+}
+
+#display {
+   height: 20%;
+}
+
+#decor {
+   height: 5%;
+}
+
+#calculatorButtons {
+   flex: 1 1 auto;
 }
 
 footer {
@@ -58,4 +74,8 @@ body {
 
 body > * {
    border: 2px solid red;
+}
+
+#theCalculator > * {
+   border: 1px solid red;
 }
