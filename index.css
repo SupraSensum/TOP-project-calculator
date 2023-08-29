@@ -78,6 +78,16 @@ header {
 .calc-button-row > button {
    flex: 1 1 0;
    border-radius: 6px;
+   transition: transform 0.1s ease-in-out;
+   font-weight: bold;
+   border: 1px solid #ccc;
+   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+   background-color: rgb(212, 212, 212);
+   font-size: 1.2em;
+}
+
+.calc-button-row > button:hover {
+   transform: scale(1.05);
 }
 
 footer {
