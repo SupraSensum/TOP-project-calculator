@@ -6,6 +6,7 @@
 const theCalculator = document.getElementById('theCalculator');
 const contentContainer = document.getElementById('content');
 const calcNumberKeys = document.querySelectorAll('.calc-number-key');
+const displayResultField = document.getElementById('calc-result');
 
 // Declare constants
 const calc = {
@@ -58,7 +59,7 @@ function setCalcHeightToPropOfWidth() {
 
 function updateDisplay(numberKey) {
    displayValue += String(numberKey.textContent);
-   console.log(displayValue);
+   displayResultField.textContent = displayValue;
 }
 
 // 
