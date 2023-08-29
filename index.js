@@ -1,5 +1,13 @@
+// 
+// Globals
+// 
+
+// Get elements
 const theCalculator = document.getElementById('theCalculator');
 const contentContainer = document.getElementById('content');
+const calcNumberKeys = document.querySelectorAll('.calc-number-key');
+
+// Declare constants
 const calc = {
    '+': (a, b) => a + b,
    '-': (a, b) => a - b,
@@ -7,12 +15,24 @@ const calc = {
    '/': (a, b) => a / b,
 }
 
+// Declare variables
 let operandA,
    operandB,
-   operator;
+   operator,
+   displayValue = '';
 
+// First runs
 setCalcHeightToPropOfWidth();
+
+// Add event listeners
 window.addEventListener('resize', setCalcHeightToPropOfWidth);
+calcNumberKeys.forEach((numberKey) => {
+   numberKey.addEventListener('click', () => updateDisplay(numberKey));
+})
+
+// 
+// Functions
+// 
 
 function operate(op, a, b) {
    return calc[op](a, b);
@@ -25,7 +45,7 @@ function setCalcHeightToPropOfWidth() {
    const MAX_HEIGHT = contentHeight * 0.75;
    const MIN_HEIGHT = 350;
 
-   let newHeight = calcWidth * 1.5
+   let newHeight = calcWidth * 1.5;
 
    if (newHeight > MAX_HEIGHT){
       newHeight = MAX_HEIGHT;
@@ -36,7 +56,14 @@ function setCalcHeightToPropOfWidth() {
    theCalculator.style.height = `${newHeight}px`;
 }
 
-// debugging
+function updateDisplay(numberKey) {
+   displayValue += String(numberKey.textContent);
+   console.log(displayValue);
+}
+
+// 
+// DEBUGGING
+// 
 for (let key in calc) {
    console.log(operate(key, 10, 10));
 }
