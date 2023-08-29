@@ -6,14 +6,15 @@
 const theCalculator = document.getElementById('theCalculator');
 const contentContainer = document.getElementById('content');
 const calcNumberKeys = document.querySelectorAll('.calc-number-key');
+const calcOperatorKeys = document.querySelectorAll('.calc-operator-key');
 const displayResultField = document.getElementById('calc-result');
 
 // Declare constants
 const calc = {
    '+': (a, b) => a + b,
-   '-': (a, b) => a - b,
-   '*': (a, b) => a * b,
-   '/': (a, b) => a / b,
+   '−': (a, b) => a - b,
+   '×': (a, b) => a * b,
+   '÷': (a, b) => a / b,
 }
 
 // Declare variables
@@ -29,6 +30,9 @@ setCalcHeightToPropOfWidth();
 window.addEventListener('resize', setCalcHeightToPropOfWidth);
 calcNumberKeys.forEach((numberKey) => {
    numberKey.addEventListener('click', () => updateDisplay(numberKey));
+})
+calcOperatorKeys.forEach((operatorKey) => {
+   operatorKey.addEventListener('click', () => beginOperation(operatorKey));
 })
 
 // 
@@ -62,9 +66,28 @@ function updateDisplay(numberKey) {
    displayResultField.textContent = displayValue;
 }
 
+function beginOperation(operatorKey) {
+   operandA = Number(displayValue);
+   operator = operatorKey.textContent;
+   console.log(operandA, operator);
+}
+
 // 
 // DEBUGGING
 // 
 for (let key in calc) {
    console.log(operate(key, 10, 10));
 }
+
+// // LOGIC
+// display value is input by user
+
+// user selects operand
+//    - push display value to operandA variable
+//    - push operand selected to operator variable
+//    - clear display
+ 
+// user selects equals
+//    - push display value to operandB variable
+//    - perform calculation
+//    - push result to display
