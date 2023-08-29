@@ -29,7 +29,7 @@ setCalcHeightToPropOfWidth();
 // Add event listeners
 window.addEventListener('resize', setCalcHeightToPropOfWidth);
 calcNumberKeys.forEach((numberKey) => {
-   numberKey.addEventListener('click', () => updateDisplay(numberKey));
+   numberKey.addEventListener('click', () => updateDisplayValue(numberKey.textContent));
 })
 calcOperatorKeys.forEach((operatorKey) => {
    operatorKey.addEventListener('click', () => beginOperation(operatorKey));
@@ -61,15 +61,19 @@ function setCalcHeightToPropOfWidth() {
    theCalculator.style.height = `${newHeight}px`;
 }
 
-function updateDisplay(numberKey) {
-   displayValue += String(numberKey.textContent);
-   displayResultField.textContent = displayValue;
+function updateDisplayValue(value) {
+   displayValue += String(value);
+   updateDisplay(displayValue);
+}
+
+function updateDisplay(newDisplayValue) {
+   displayResultField.textContent = newDisplayValue;
 }
 
 function beginOperation(operatorKey) {
    operandA = Number(displayValue);
    operator = operatorKey.textContent;
-   console.log(operandA, operator);
+
 }
 
 // 
