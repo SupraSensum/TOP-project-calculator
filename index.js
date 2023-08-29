@@ -8,6 +8,7 @@ const contentContainer = document.getElementById('content');
 const calcNumberKeys = document.querySelectorAll('.calc-number-key');
 const calcOperatorKeys = document.querySelectorAll('.calc-operator-key');
 const displayResultField = document.getElementById('calc-result');
+const calcEqualsKey = document.getElementById('calc-equals');
 
 // Declare constants
 const calc = {
@@ -29,11 +30,14 @@ setCalcHeightToPropOfWidth();
 // Add event listeners
 window.addEventListener('resize', setCalcHeightToPropOfWidth);
 calcNumberKeys.forEach((numberKey) => {
-   numberKey.addEventListener('click', () => updateDisplayValue(numberKey.textContent));
-})
+   numberKey.addEventListener('click', () => appendDisplayValue(numberKey.textContent));
+});
 calcOperatorKeys.forEach((operatorKey) => {
-   operatorKey.addEventListener('click', () => beginOperation(operatorKey));
-})
+   operatorKey.addEventListener('click', () => updateOperatorAndOperands(operatorKey));
+});
+calcEqualsKey.addEventListener('click', () => {
+   
+});
 
 // 
 // Functions
@@ -61,27 +65,45 @@ function setCalcHeightToPropOfWidth() {
    theCalculator.style.height = `${newHeight}px`;
 }
 
-function updateDisplayValue(value) {
+function clearDisplay() {
+   displayValue = '';
+   updateDisplay();
+}
+
+function appendDisplayValue(value) {
    displayValue += String(value);
-   updateDisplay(displayValue);
+   updateDisplay();
 }
 
-function updateDisplay(newDisplayValue) {
-   displayResultField.textContent = newDisplayValue;
+function updateDisplay(someString = displayValue) {
+   someString.toString();
+   displayResultField.textContent = someString;
 }
 
-function beginOperation(operatorKey) {
-   operandA = Number(displayValue);
+function updateOperatorAndOperands(operatorKey) {
+   // update operands
+   if (!operandA) {
+      operandA = Number(displayValue);
+   } else {
+      operandB = Number(displayValue);
+   }
+
+   // check if calcution is needed
+   if (operandB) {
+      operandA = operate(operator, operandA, operandB);
+      operandB = null;
+   }
+
+   // update operator
    operator = operatorKey.textContent;
 
+   clearDisplay();
+   updateDisplay(`${operandA} ${operator}`);
 }
 
 // 
 // DEBUGGING
 // 
-for (let key in calc) {
-   console.log(operate(key, 10, 10));
-}
 
 // // LOGIC
 // display value is input by user
