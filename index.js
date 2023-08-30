@@ -100,8 +100,6 @@ function updateExpression(operatorKey) {
 }
 
 function calculateFinalResult() {
-   console.log(`i: "${operandA}" "${operator}" "${operandB}"`)
-   
    if (displayValue === undefined || displayValue === null) {
       operandB = Number(displayValue);
    } else {
@@ -115,22 +113,9 @@ function calculateFinalResult() {
 
    clearDisplay();
    updateDisplay(operandA);
-   console.log(`o: "${operandA}" "${operator}" "${operandB}"`)
 }
 
 // 
 // DEBUGGING
 // 
 
-// // LOGIC
-// display value is input by user
-
-// user selects operand
-//    - push display value to operandA variable
-//    - push operand selected to operator variable
-//    - clear display
- 
-// user selects equals
-//    - push display value to operandB variable
-//    - perform calculation
-//    - push result to display
