@@ -33,7 +33,7 @@ calcNumberKeys.forEach((numberKey) => {
    numberKey.addEventListener('click', () => appendToDisplay(numberKey.textContent));
 });
 calcOperatorKeys.forEach((operatorKey) => {
-   operatorKey.addEventListener('click', () => updateOperatorAndOperands(operatorKey));
+   operatorKey.addEventListener('click', () => updateExpression(operatorKey));
 });
 calcEqualsKey.addEventListener('click', calculateFinalResult);
 
@@ -78,7 +78,7 @@ function updateDisplay(someString = displayValue) {
    displayResultField.textContent = someString;
 }
 
-function updateOperatorAndOperands(operatorKey) {
+function updateExpression(operatorKey) {
    // update operands
    if (!operandA) {
       operandA = Number(displayValue);
