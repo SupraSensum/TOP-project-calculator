@@ -43,8 +43,10 @@ calcClearKey.addEventListener('click', clearEverything);
 // Functions
 // 
 
+let temp = 0;
 function operate(op, a, b) {
-   return calc[op](a, b);
+   // console.log(++temp, a, op, b);
+   return checkIfDividingByZero() ? a : calc[op](a, b);
 }
 
 // set calculator height to be a proportion of its width
@@ -80,6 +82,15 @@ function updateDisplay(someString = displayValue) {
    displayResultField.textContent = someString;
 }
 
+function checkIfDividingByZero() {
+   if (operator === '÷' && (Number(operandB) === 0 || Number(displayValue) === 0)) {
+      alert("Dividing by 0? Ain't happenin', chief");
+      return true;
+   }
+
+   return false;
+}
+
 function updateExpression(operatorKey) {
    // update operands
    if (operandA === undefined || operandA === null) {
@@ -89,7 +100,8 @@ function updateExpression(operatorKey) {
    }
 
    // check if calcution is needed
-   if (operandB) {
+   if (operandB !== undefined && operandB !== null) {
+      console.log(operandA, operator, operandB);
       operandA = operate(operator, operandA, operandB);
       operandB = null;
    }
@@ -108,9 +120,7 @@ function calculateFinalResult() {
       updateDisplay(operandA);
    } else if (operator !== undefined && operator !== null) {
       operandB = Number(displayValue);
-   
       operandA = operate(operator, operandA, operandB);
-
       operator = null;
       operandB = null;
       clearDisplay();
