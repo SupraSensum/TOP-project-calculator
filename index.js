@@ -30,7 +30,7 @@ setCalcHeightToPropOfWidth();
 // Add event listeners
 window.addEventListener('resize', setCalcHeightToPropOfWidth);
 calcNumberKeys.forEach((numberKey) => {
-   numberKey.addEventListener('click', () => appendToDisplayValue(numberKey.textContent));
+   numberKey.addEventListener('click', () => appendToDisplay(numberKey.textContent));
 });
 calcOperatorKeys.forEach((operatorKey) => {
    operatorKey.addEventListener('click', () => updateOperatorAndOperands(operatorKey));
@@ -68,7 +68,7 @@ function clearDisplay() {
    updateDisplay();
 }
 
-function appendToDisplayValue(value) {
+function appendToDisplay(value) {
    displayValue += String(value);
    updateDisplay();
 }
