@@ -19,10 +19,10 @@ const calc = {
 }
 
 // Declare variables
-let operandA,
-   operandB,
-   operator,
-   displayValue = '';
+let operandA = null,
+   operandB = null,
+   operator = null,
+   displayValue  = '';
 
 // First runs
 setCalcHeightToPropOfWidth();
@@ -30,14 +30,12 @@ setCalcHeightToPropOfWidth();
 // Add event listeners
 window.addEventListener('resize', setCalcHeightToPropOfWidth);
 calcNumberKeys.forEach((numberKey) => {
-   numberKey.addEventListener('click', () => appendDisplayValue(numberKey.textContent));
+   numberKey.addEventListener('click', () => appendToDisplayValue(numberKey.textContent));
 });
 calcOperatorKeys.forEach((operatorKey) => {
    operatorKey.addEventListener('click', () => updateOperatorAndOperands(operatorKey));
 });
-calcEqualsKey.addEventListener('click', () => {
-   
-});
+calcEqualsKey.addEventListener('click', calculateFinalResult);
 
 // 
 // Functions
@@ -70,7 +68,7 @@ function clearDisplay() {
    updateDisplay();
 }
 
-function appendDisplayValue(value) {
+function appendToDisplayValue(value) {
    displayValue += String(value);
    updateDisplay();
 }
@@ -99,6 +97,25 @@ function updateOperatorAndOperands(operatorKey) {
 
    clearDisplay();
    updateDisplay(`${operandA} ${operator}`);
+}
+
+function calculateFinalResult() {
+   console.log(`i: "${operandA}" "${operator}" "${operandB}"`)
+   
+   if (displayValue === undefined || displayValue === null) {
+      operandB = Number(displayValue);
+   } else {
+      operandB = Number(displayValue);
+   
+      operandA = operate(operator, operandA, operandB);
+
+      operator = null;
+      operandB = null;
+   }
+
+   clearDisplay();
+   updateDisplay(operandA);
+   console.log(`o: "${operandA}" "${operator}" "${operandB}"`)
 }
 
 // 
