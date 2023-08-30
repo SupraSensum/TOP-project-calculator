@@ -9,6 +9,7 @@ const calcNumberKeys = document.querySelectorAll('.calc-number-key');
 const calcOperatorKeys = document.querySelectorAll('.calc-operator-key');
 const displayResultField = document.getElementById('calc-result');
 const calcEqualsKey = document.getElementById('calc-equals');
+const calcClearKey = document.getElementById('calc-clear');
 
 // Declare constants
 const calc = {
@@ -36,6 +37,7 @@ calcOperatorKeys.forEach((operatorKey) => {
    operatorKey.addEventListener('click', () => updateExpression(operatorKey));
 });
 calcEqualsKey.addEventListener('click', calculateFinalResult);
+calcClearKey.addEventListener('click', clearEverything);
 
 // 
 // Functions
@@ -117,6 +119,14 @@ function calculateFinalResult() {
       clearDisplay();
       updateDisplay(operandA);
    }
+}
+
+function clearEverything() {
+   operandA = null;
+   operandB = null;
+   operator = null;
+   clearDisplay();
+   updateDisplay(0);
 }
 
 // 
