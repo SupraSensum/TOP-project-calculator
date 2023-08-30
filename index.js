@@ -43,10 +43,8 @@ calcClearKey.addEventListener('click', clearEverything);
 // Functions
 // 
 
-let temp = 0;
 function operate(op, a, b) {
-   // console.log(++temp, a, op, b);
-   return checkIfDividingByZero() ? a : calc[op](a, b);
+   return calc[op](a, b)
 }
 
 // set calculator height to be a proportion of its width
@@ -65,78 +63,6 @@ function setCalcHeightToPropOfWidth() {
    }
 
    theCalculator.style.height = `${newHeight}px`;
-}
-
-function clearDisplay() {
-   displayValue = '';
-   updateDisplay();
-}
-
-function appendToDisplay(value) {
-   displayValue += String(value);
-   updateDisplay();
-}
-
-function updateDisplay(someString = displayValue) {
-   someString.toString();
-   displayResultField.textContent = someString;
-}
-
-function checkIfDividingByZero() {
-   if (operator === '÷' && (Number(operandB) === 0 || Number(displayValue) === 0)) {
-      alert("Dividing by 0? Ain't happenin', chief");
-      return true;
-   }
-
-   return false;
-}
-
-function updateExpression(operatorKey) {
-   // update operands
-   if (operandA === undefined || operandA === null) {
-      operandA = Number(displayValue);
-   } else {
-      operandB = Number(displayValue);
-   }
-
-   // check if calcution is needed
-   if (operandB !== undefined && operandB !== null) {
-      console.log(operandA, operator, operandB);
-      operandA = operate(operator, operandA, operandB);
-      operandB = null;
-   }
-
-   // update operator
-   operator = operatorKey.textContent;
-
-   clearDisplay();
-   updateDisplay(`${operandA} ${operator}`);
-}
-
-function calculateFinalResult() {
-   if (displayValue === undefined || displayValue === null) {
-      operandB = Number(displayValue);
-      clearDisplay();
-      updateDisplay(operandA);
-   } else if (operator !== undefined && operator !== null) {
-      operandB = Number(displayValue);
-      operandA = operate(operator, operandA, operandB);
-      operator = null;
-      operandB = null;
-      clearDisplay();
-      updateDisplay(operandA);
-   } else if (operandA !== undefined && operandA !== null) {
-      clearDisplay();
-      updateDisplay(operandA);
-   }
-}
-
-function clearEverything() {
-   operandA = null;
-   operandB = null;
-   operator = null;
-   clearDisplay();
-   updateDisplay(0);
 }
 
 // 
