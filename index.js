@@ -102,17 +102,21 @@ function updateExpression(operatorKey) {
 function calculateFinalResult() {
    if (displayValue === undefined || displayValue === null) {
       operandB = Number(displayValue);
-   } else {
+      clearDisplay();
+      updateDisplay(operandA);
+   } else if (operator !== undefined && operator !== null) {
       operandB = Number(displayValue);
    
       operandA = operate(operator, operandA, operandB);
 
       operator = null;
       operandB = null;
+      clearDisplay();
+      updateDisplay(operandA);
+   } else if (operandA !== undefined && operandA !== null) {
+      clearDisplay();
+      updateDisplay(operandA);
    }
-
-   clearDisplay();
-   updateDisplay(operandA);
 }
 
 // 
