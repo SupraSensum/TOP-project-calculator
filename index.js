@@ -80,7 +80,7 @@ function updateDisplay(someString = displayValue) {
 
 function updateExpression(operatorKey) {
    // update operands
-   if (!operandA) {
+   if (operandA === undefined || operandA === null) {
       operandA = Number(displayValue);
    } else {
       operandB = Number(displayValue);
