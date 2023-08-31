@@ -5,9 +5,9 @@
 // Get elements
 const theCalculator = document.getElementById('theCalculator');
 const contentContainer = document.getElementById('content');
+const displayResultField = document.getElementById('calc-result');
 const calcNumberKeys = document.querySelectorAll('.calc-number-key');
 const calcOperatorKeys = document.querySelectorAll('.calc-operator-key');
-const displayResultField = document.getElementById('calc-result');
 const calcEqualsKey = document.getElementById('calc-equals');
 const calcClearKey = document.getElementById('calc-clear');
 
@@ -33,11 +33,11 @@ window.addEventListener('resize', setCalcHeightToPropOfWidth);
 calcNumberKeys.forEach((numberKey) => {
    numberKey.addEventListener('click', () => appendToDisplay(numberKey.textContent));
 });
-calcOperatorKeys.forEach((operatorKey) => {
-   operatorKey.addEventListener('click', () => updateExpression(operatorKey));
-});
-calcEqualsKey.addEventListener('click', calculateFinalResult);
-calcClearKey.addEventListener('click', clearEverything);
+// calcOperatorKeys.forEach((operatorKey) => {
+//    operatorKey.addEventListener('click', () => updateExpression(operatorKey));
+// });
+// calcEqualsKey.addEventListener('click', calculateFinalResult);
+// calcClearKey.addEventListener('click', clearEverything);
 
 // 
 // Functions
@@ -63,6 +63,11 @@ function setCalcHeightToPropOfWidth() {
    }
 
    theCalculator.style.height = `${newHeight}px`;
+}
+
+function appendToDisplay(theThingToAppend) {
+   displayValue += theThingToAppend;
+   displayResultField.textContent = displayValue;
 }
 
 // 
