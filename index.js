@@ -36,7 +36,7 @@ calcNumberKeys.forEach((numberKey) => {
 calcOperatorKeys.forEach((operatorKey) => {
    operatorKey.addEventListener('click', () => updateAndEvalExpression(operatorKey.textContent));
 });
-// calcEqualsKey.addEventListener('click', calculateFinalResult);
+calcEqualsKey.addEventListener('click', evaluateExpression);
 // calcClearKey.addEventListener('click', clearEverything);
 
 // 
@@ -107,5 +107,11 @@ function updateAndEvalExpression(theSelectedOperator) {
       operandB = null;
    } else {
       console.error("YOU SHOULDN'T BE HERE");
+   }
+}
+
+function evaluateExpression() {
+   if (operandB === null) {
+      
    }
 }
