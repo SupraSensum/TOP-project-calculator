@@ -23,7 +23,7 @@ const calc = {
 let operandA = null,
    operandB = null,
    operator = null,
-   displayValue  = '';
+   displayValue  = displayResultField.textContent;
 
 // First runs
 setCalcHeightToPropOfWidth();
@@ -68,8 +68,15 @@ function setCalcHeightToPropOfWidth() {
 }
 
 function appendToDisplay(theThingToAppend) {
-   displayValue += theThingToAppend;
-   updateDisplay(displayValue);
+   if (displayValue === '0') { // replace display
+      displayValue = theThingToAppend;
+      updateDisplay(displayValue);
+   } else if (displayValue !== '0') { // append display
+      displayValue += theThingToAppend;
+      updateDisplay(displayValue);
+   } else {
+      console.error("YOU SHOULDN'T BE HERE");
+   }
 }
 
 function updateDisplay(newDisplayContent) {
@@ -95,8 +102,8 @@ function updateAndEvalExpression(theSelectedOperator) {
       operandB = Number(displayValue);
       clearDisplay();
       operandA = operate(operator, operandA, operandB);
-      updateDisplay(`${operandA} ${operator}`);
       operator = theSelectedOperator;
+      updateDisplay(`${operandA} ${operator}`);
       operandB = null;
    } else {
       console.error("YOU SHOULDN'T BE HERE");
