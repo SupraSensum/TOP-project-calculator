@@ -88,22 +88,22 @@ function clearDisplay() {
    updateDisplay(displayValue);
 }
 
+function setOperatorAndDisplay(newOperator) {
+   clearDisplay();
+   operator = newOperator;
+   updateDisplay(`${operandA} ${operator}`);
+}
+
 function updateAndEvalExpression(theSelectedOperator) {
    if (operandA === null) { // should only be true for initial calculator state
       operandA = Number(displayValue);
-      clearDisplay();
-      operator = theSelectedOperator;
-      updateDisplay(`${operandA} ${operator}`);
+      setOperatorAndDisplay(theSelectedOperator);
    } else if (displayValue === '' && operandA !== null && operandB === null) { // typically only true if operator is changed mid-expression
-      clearDisplay();
-      operator = theSelectedOperator;
-      updateDisplay(`${operandA} ${operator}`);
+      setOperatorAndDisplay(theSelectedOperator);
    } else if (operandA !== null && operator !== null && operandB === null) { // true if chaining more than one operator in the expression
       operandB = Number(displayValue);
-      clearDisplay();
       operandA = operate(operator, operandA, operandB);
-      operator = theSelectedOperator;
-      updateDisplay(`${operandA} ${operator}`);
+      setOperatorAndDisplay(theSelectedOperator);
       operandB = null;
    } else {
       console.error("YOU SHOULDN'T BE HERE");
