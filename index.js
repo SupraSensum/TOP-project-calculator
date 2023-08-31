@@ -94,6 +94,8 @@ function setOperatorAndDisplay(newOperator) {
    updateDisplay(`${operandA} ${operator}`);
 }
 
+// I have no clue how to make the code below easy to understand for my future
+// self, let alone other poor souls
 function updateAndEvalExpression(theSelectedOperator) {
    if (operandA === null) { // should only be true for initial calculator state
       operandA = Number(displayValue);
