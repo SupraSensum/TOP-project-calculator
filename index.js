@@ -44,7 +44,9 @@ calcOperatorKeys.forEach((operatorKey) => {
 // 
 
 function operate(op, a, b) {
-   return calc[op](a, b)
+   a = Number(a);
+   b = Number(b);
+   return calc[op](a, b);
 }
 
 // set calculator height to be a proportion of its width
@@ -74,18 +76,39 @@ function updateDisplay(newDisplayContent) {
    displayResultField.textContent = newDisplayContent;
 }
 
+function clearDisplay() {
+   displayValue = '';
+   updateDisplay(displayValue);
+}
+
 function updateAndEvalExpression(theSelectedOperator) {
    // if 
    // opA = null
    //    - opA = displayValue
+   //    - clearDisplay()
    //    - operator = theSelectedOperator
    //    - updateDisplay(opA operator)
-   // opA & opB exist
+   // opA & operator exist & opB does not exist
+   //    - opB = displayValue
+   //    - clearDisplay()
    //    - opA = operate()
    //    - operator = theSelectedOperator
-   //    - opB = null
-   // else if opA does exist & opB does not exist
-   //    - 
+   //    - opB = null;
+
+   if (operandA === null) {
+      operandA = displayValue;
+      clearDisplay();
+      operator = theSelectedOperator;
+      updateDisplay(`${operandA} ${operator}`);
+   } else if (operandA !== null && operator !== null && operandB === null) {
+      operandB = displayValue;
+      clearDisplay;
+      operandA = operate(operator, operandA, operandB);
+      operator = theSelectedOperator;
+      operandB = null;
+   } else {
+      console.error("YOU SHOULDN'T BE HERE");
+   }
 }
 
 // 
