@@ -105,6 +105,9 @@ function updateAndEvalExpression(theSelectedOperator) {
       operandA = operate(operator, operandA, operandB);
       setOperatorAndDisplay(theSelectedOperator);
       operandB = null;
+   } else if (operandA !== null && operandB === null && operator === null) {
+      operandA = Number(displayValue);
+      setOperatorAndDisplay(theSelectedOperator);
    } else {
       console.error("YOU SHOULDN'T BE HERE");
    }
@@ -115,8 +118,8 @@ function evaluateExpression() {
       operandB = displayValue;
       operandA = operate(operator, operandA, operandB);
       operandB = null;
+      operator = null;
       clearDisplay();
       updateDisplay(operandA);
-      console.log('IN');
    }
 }
