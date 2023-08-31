@@ -82,36 +82,23 @@ function clearDisplay() {
 }
 
 function updateAndEvalExpression(theSelectedOperator) {
-   // if 
-   // opA = null
-   //    - opA = displayValue
-   //    - clearDisplay()
-   //    - operator = theSelectedOperator
-   //    - updateDisplay(opA operator)
-   // opA & operator exist & opB does not exist
-   //    - opB = displayValue
-   //    - clearDisplay()
-   //    - opA = operate()
-   //    - operator = theSelectedOperator
-   //    - opB = null;
-
-   if (operandA === null) {
-      operandA = displayValue;
+   if (operandA === null) { // should only be true for initial calculator state
+      operandA = Number(displayValue);
       clearDisplay();
       operator = theSelectedOperator;
       updateDisplay(`${operandA} ${operator}`);
-   } else if (operandA !== null && operator !== null && operandB === null) {
-      operandB = displayValue;
-      clearDisplay;
+   } else if (displayValue === '' && operandA !== null && operandB === null) { // typically only true if operator is changed mid-expression
+      clearDisplay();
+      operator = theSelectedOperator;
+      updateDisplay(`${operandA} ${operator}`);
+   } else if (operandA !== null && operator !== null && operandB === null) { // true if chaining more than one operator in the expression
+      operandB = Number(displayValue);
+      clearDisplay();
       operandA = operate(operator, operandA, operandB);
+      updateDisplay(`${operandA} ${operator}`);
       operator = theSelectedOperator;
       operandB = null;
    } else {
       console.error("YOU SHOULDN'T BE HERE");
    }
 }
-
-// 
-// DEBUGGING
-// 
-
