@@ -21,6 +21,7 @@ body {
 
 header {
    min-height: 64px;
+   border-bottom: 4px solid rgb(192, 192, 192);
 }
 
 #content {
@@ -92,6 +93,14 @@ header {
 
 footer {
    min-height: 32px;
+   flex-direction: column;
+   gap: 8px;
+   padding: 8px 16px;
+   border-top: 4px solid rgb(192, 192, 192);;
+}
+
+footer img {
+   max-height: 32px;
 }
 
 a {
@@ -116,13 +125,13 @@ a:hover {
 
 /* DEBUG */
 
-body {
+/* body {
    border: 5px solid green;
 }
 
 body > * {
    border: 2px solid red;
-}
+} */
 
 #decor {
    /* border: 1px solid red; */
