@@ -34,7 +34,7 @@ calcNumberKeys.forEach((numberKey) => {
    numberKey.addEventListener('click', () => appendToDisplay(numberKey.textContent));
 });
 calcOperatorKeys.forEach((operatorKey) => {
-   operatorKey.addEventListener('click', () => updateAndEvalExpression(operatorKey));
+   operatorKey.addEventListener('click', () => updateAndEvalExpression(operatorKey.textContent));
 });
 // calcEqualsKey.addEventListener('click', calculateFinalResult);
 // calcClearKey.addEventListener('click', clearEverything);
@@ -67,7 +67,25 @@ function setCalcHeightToPropOfWidth() {
 
 function appendToDisplay(theThingToAppend) {
    displayValue += theThingToAppend;
-   displayResultField.textContent = displayValue;
+   updateDisplay(displayValue);
+}
+
+function updateDisplay(newDisplayContent) {
+   displayResultField.textContent = newDisplayContent;
+}
+
+function updateAndEvalExpression(theSelectedOperator) {
+   // if 
+   // opA = null
+   //    - opA = displayValue
+   //    - operator = theSelectedOperator
+   //    - updateDisplay(opA operator)
+   // opA & opB exist
+   //    - opA = operate()
+   //    - operator = theSelectedOperator
+   //    - opB = null
+   // else if opA does exist & opB does not exist
+   //    - 
 }
 
 // 
