@@ -111,7 +111,12 @@ function updateAndEvalExpression(theSelectedOperator) {
 }
 
 function evaluateExpression() {
-   if (operandB === null) {
-      
+   if (operandA !== null && operator !== null && displayValue !== '') {
+      operandB = displayValue;
+      operandA = operate(operator, operandA, operandB);
+      operandB = null;
+      clearDisplay();
+      updateDisplay(operandA);
+      console.log('IN');
    }
 }
