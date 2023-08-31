@@ -33,9 +33,9 @@ window.addEventListener('resize', setCalcHeightToPropOfWidth);
 calcNumberKeys.forEach((numberKey) => {
    numberKey.addEventListener('click', () => appendToDisplay(numberKey.textContent));
 });
-// calcOperatorKeys.forEach((operatorKey) => {
-//    operatorKey.addEventListener('click', () => updateExpression(operatorKey));
-// });
+calcOperatorKeys.forEach((operatorKey) => {
+   operatorKey.addEventListener('click', () => updateAndEvalExpression(operatorKey));
+});
 // calcEqualsKey.addEventListener('click', calculateFinalResult);
 // calcClearKey.addEventListener('click', clearEverything);
 
