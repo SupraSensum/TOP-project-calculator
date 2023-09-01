@@ -37,7 +37,7 @@ calcOperatorKeys.forEach((operatorKey) => {
    operatorKey.addEventListener('click', () => updateAndEvalExpression(operatorKey.textContent));
 });
 calcEqualsKey.addEventListener('click', evaluateExpression);
-// calcClearKey.addEventListener('click', clearEverything);
+calcClearKey.addEventListener('click', reset);
 
 // 
 // Functions
@@ -124,4 +124,12 @@ function evaluateExpression() {
       clearDisplay();
       updateDisplay(operandA);
    }
+}
+
+function reset() {
+   operandA = null;
+   operandB = null;
+   operator = null;
+   displayValue  = '0';
+   updateDisplay(displayValue);
 }
