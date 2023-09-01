@@ -166,21 +166,17 @@ function toRoundOrNotToRound(theNumInQuestion) {
    let decimalDigitCount = null;
 
    if (theNumInQuestionLength <= MAX_CHAR_DISPLAY_LENGTH) {
-      console.log('a');
       return theNumInQuestion;
    }
 
    if (theNumInQuestion.includes('.')) {
-      console.log('b');
       lengthDifference = theNumInQuestionLength - MAX_CHAR_DISPLAY_LENGTH;
       decimalDigitCount = theNumInQuestion.substring(theNumInQuestion.indexOf('.') + 1).length;
       if (lengthDifference <= decimalDigitCount) {
-         console.log('c');
          return parseFloat(theNumInQuestion).toFixed(decimalDigitCount - lengthDifference)
       }
    }
 
-   console.log('d');
    return parseFloat(theNumInQuestion).toExponential(MAX_CHAR_DISPLAY_LENGTH - 7);
 
    // I'm leaving my brainstorming below as a reminder of what went into this
