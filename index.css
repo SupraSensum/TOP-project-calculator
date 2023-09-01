@@ -145,21 +145,3 @@ a:hover {
    border: 3px solid black;
    border-radius: 8px;
 }
-
-/* DEBUG */
-
-/* body {
-   border: 5px solid green;
-}
-
-body > * {
-   border: 2px solid red;
-} */
-
-#decor {
-   /* border: 1px solid red; */
-}
-
-#calculatorButtons > * {
-   /* border: 1px solid orange; */
-}
