@@ -20,7 +20,10 @@ const calc = {
    '−': (a, b) => a - b,
    '×': (a, b) => a * b,
    '÷': (a, b) => a / b,
-}
+};
+const keyboardKeys = {
+   
+};
 
 // Declare variables
 let operandA = null,
@@ -43,6 +46,7 @@ calcEqualsKey.addEventListener('click', evaluateExpression);
 calcClearKey.addEventListener('click', reset);
 calcDecimalKey.addEventListener('click', addDecimal);
 calcDeleteKey.addEventListener('click', deleteLast);
+document.addEventListener('keydown', (event) => handleKeyboardInput(event));
 
 // 
 // Functions
@@ -210,5 +214,57 @@ function deleteLast() {
       }
    
       updateDisplay(displayValue);
+   }
+}
+
+function handleKeyboardInput(event) {
+   switch (event.key) {
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+      case '0':
+         appendToDisplay(event.key);
+         break;
+      case '.':
+         addDecimal();
+         break;
+      case '=':
+      case 'Enter':
+         evaluateExpression();
+         break;
+      case '+':
+         updateAndEvalExpression('+');
+         break;
+      case '-':
+      case '−':
+         updateAndEvalExpression('−');
+         break;
+      case '*':
+      case 'x':
+      case 'X':
+      case '×':
+         updateAndEvalExpression('×');
+         break;
+      case '/':
+      case '\\':
+      case '÷':
+         updateAndEvalExpression('÷');
+         break;
+      case 'Backspace':
+      case 'Delete':
+         deleteLast();
+         break;
+      case 'Escape':
+         reset();
+         break;
+      default:
+         console.error(`Key: ${event.key}`);
+         break;
    }
 }
