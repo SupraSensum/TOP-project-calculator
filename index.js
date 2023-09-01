@@ -10,6 +10,7 @@ const calcNumberKeys = document.querySelectorAll('.calc-number-key');
 const calcOperatorKeys = document.querySelectorAll('.calc-operator-key');
 const calcEqualsKey = document.getElementById('calc-equals');
 const calcClearKey = document.getElementById('calc-clear');
+const calcDecimalKey = document.getElementById('calc-decimal');
 
 // Declare constants
 const MAX_CHAR_DISPLAY_LENGTH = 11;
@@ -39,6 +40,7 @@ calcOperatorKeys.forEach((operatorKey) => {
 });
 calcEqualsKey.addEventListener('click', evaluateExpression);
 calcClearKey.addEventListener('click', reset);
+calcDecimalKey.addEventListener('click', addDecimal);
 
 // 
 // Functions
@@ -185,4 +187,14 @@ function toRoundOrNotToRound(theNumInQuestion) {
    //       if: x <= y
    //          return: round to y - x number of digits
    // return: parseFloat().toExponential(max - 5)
+}
+
+function addDecimal() {
+   if (!displayValue.includes('.')) {
+      if (Number(displayValue) === 0){
+         appendToDisplay('0.');
+      } else {
+         appendToDisplay('.');
+      }
+   }
 }
