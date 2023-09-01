@@ -46,6 +46,12 @@ calcClearKey.addEventListener('click', reset);
 function operate(op, a, b) {
    a = Number(a);
    b = Number(b);
+
+   if (isDividingByZero(op, b)) {
+      alert('To hell with your 0!');
+      return a;
+   }
+
    return calc[op](a, b);
 }
 
@@ -132,4 +138,8 @@ function reset() {
    operator = null;
    displayValue  = '0';
    updateDisplay(displayValue);
+}
+
+function isDividingByZero(op, b) {
+   return op === '÷' && b === 0
 }
