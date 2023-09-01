@@ -21,9 +21,6 @@ const calc = {
    '×': (a, b) => a * b,
    '÷': (a, b) => a / b,
 };
-const keyboardKeys = {
-   
-};
 
 // Declare variables
 let operandA = null,
