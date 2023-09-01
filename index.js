@@ -12,6 +12,7 @@ const calcEqualsKey = document.getElementById('calc-equals');
 const calcClearKey = document.getElementById('calc-clear');
 
 // Declare constants
+const MAX_CHAR_DISPLAY_LENGTH = 11;
 const calc = {
    '+': (a, b) => a + b,
    '−': (a, b) => a - b,
@@ -86,7 +87,11 @@ function appendToDisplay(theThingToAppend) {
 }
 
 function updateDisplay(newDisplayContent) {
-   displayResultField.textContent = newDisplayContent;
+   if (isNaN(parseFloat(newDisplayContent))) {
+      displayResultField.textContent = newDisplayContent;
+   } else {
+      displayResultField.textContent = toRoundOrNotToRound(newDisplayContent);
+   }
 }
 
 function clearDisplay() {
@@ -142,4 +147,42 @@ function reset() {
 
 function isDividingByZero(op, b) {
    return op === '÷' && b === 0
+}
+
+function toRoundOrNotToRound(theNumInQuestion) {
+   theNumInQuestion = theNumInQuestion.toString();
+
+   const theNumInQuestionLength = theNumInQuestion.length;
+
+   let lengthDifference = null;
+   let decimalDigitCount = null;
+
+   if (theNumInQuestionLength <= MAX_CHAR_DISPLAY_LENGTH) {
+      console.log('a');
+      return theNumInQuestion;
+   }
+
+   if (theNumInQuestion.includes('.')) {
+      console.log('b');
+      lengthDifference = theNumInQuestionLength - MAX_CHAR_DISPLAY_LENGTH;
+      decimalDigitCount = theNumInQuestion.substring(theNumInQuestion.indexOf('.') + 1).length;
+      if (lengthDifference <= decimalDigitCount) {
+         console.log('c');
+         return parseFloat(theNumInQuestion).toFixed(decimalDigitCount - lengthDifference)
+      }
+   }
+
+   console.log('d');
+   return parseFloat(theNumInQuestion).toExponential(MAX_CHAR_DISPLAY_LENGTH - 7);
+
+   // I'm leaving my brainstorming below as a reminder of what went into this
+   // if: <= max
+   //    passthrough
+   // else:
+   //    if: has decimal
+   //       let x = how much larger is it than max length (length - max)
+   //       let y = how many digits are after the decimal
+   //       if: x <= y
+   //          return: round to y - x number of digits
+   // return: parseFloat().toExponential(max - 5)
 }
