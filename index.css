@@ -91,12 +91,35 @@ header {
    transform: scale(1.05);
 }
 
+#calculatorButtons > .calc-button-row > .calc-operator-key {
+   background-color: rgb(164,176,175);
+   border-color: rgb(164,176,175);
+}
+
+#calc-equals {
+   background-color: rgb(93,123,121);
+   color: rgb(212, 212, 212);
+   border-color: rgb(93,123,121);
+}
+
+#calc-clear {
+   background-color: rgb(162,53,51);
+   border-color: rgb(162,53,51);
+   color: rgb(212, 212, 212);
+}
+
+#calc-delete {
+   background-color: rgb(116,79,77);
+   border-color: rgb(116,79,77);
+   color: rgb(212, 212, 212);
+}
+
 footer {
    min-height: 32px;
    flex-direction: column;
    gap: 8px;
    padding: 8px 16px;
-   border-top: 4px solid rgb(192, 192, 192);;
+   border-top: 4px solid rgb(192, 192, 192);
 }
 
 footer img {
