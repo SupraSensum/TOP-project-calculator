@@ -11,6 +11,7 @@ const calcOperatorKeys = document.querySelectorAll('.calc-operator-key');
 const calcEqualsKey = document.getElementById('calc-equals');
 const calcClearKey = document.getElementById('calc-clear');
 const calcDecimalKey = document.getElementById('calc-decimal');
+const calcDeleteKey = document.getElementById('calc-delete');
 
 // Declare constants
 const MAX_CHAR_DISPLAY_LENGTH = 11;
@@ -41,6 +42,7 @@ calcOperatorKeys.forEach((operatorKey) => {
 calcEqualsKey.addEventListener('click', evaluateExpression);
 calcClearKey.addEventListener('click', reset);
 calcDecimalKey.addEventListener('click', addDecimal);
+calcDeleteKey.addEventListener('click', deleteLast);
 
 // 
 // Functions
@@ -143,7 +145,7 @@ function reset() {
    operandA = null;
    operandB = null;
    operator = null;
-   displayValue  = '0';
+   displayValue = '0';
    updateDisplay(displayValue);
 }
 
@@ -196,5 +198,17 @@ function addDecimal() {
       } else {
          appendToDisplay('.');
       }
+   }
+}
+
+function deleteLast() {
+   if (Number(displayValue) !== 0 || displayValue.includes('.')) {
+      displayValue = displayValue.slice(0, -1);
+   
+      if (displayValue === '') {
+         displayValue = '0';
+      }
+   
+      updateDisplay(displayValue);
    }
 }
